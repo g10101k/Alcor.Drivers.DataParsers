@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ServerConfig xmlns="urn:InduSoft.Alcor.Config">
+  <Settings maxQueueLenPerDevice="9999" maxQueueLenTotal="5" archiveCommandTTL="3600" writeCommandTTL="300" readArchiveMaxIntervals="3" useMissedArchiveManager="true" fillingFactor="0" controlArchivePeriod ="0:1:0" missedArchiveControlStart="1.0:0:0" missedArchiveControlDepth="2.0:0:0">
+    <Clients>
+      <Client name ="FileConnect" connection="folder=d:\dev\alc_;SameFileName=Replace" assembly="Indusoft.Alcor.Client.File"/>
+    </Clients>
+  </Settings>
+
+  <Groups>
+    <Group name="Laboratory">
+      <Devices>
+        <Device name="ANY" description="Любой прибор выдающий хоть что-нибудь" comment="" type="dataparser.Flow" channel="MOXA_ANY" enabled="true" timeZoneOffset="0" baseTime="">
+          <Attributes>
+            <Attribute name="Destinations" value="FileConnect" valueType="String" />
+            <Attribute name="FileName" value="ANY.{DateTimeNow}.TXT" valueType="String" />
+            <Attribute name="PartialDischarge" value="1" valueType="String" />
+          </Attributes>
+          <Parameters>
+            <Parameter name="Baudrate" value="9600" valueType="UInt32" />
+            <Parameter name="Databits" value="8" valueType="UInt32" />
+            <Parameter name="Handshake" value="None" valueType="String" />
+            <Parameter name="Parity" value="None" valueType="String" />
+            <Parameter name="Stopbits" value="One" valueType="String" />
+            <Parameter name="OutputDir" value=".\Output" valueType="String" />
+            <Parameter name="SkipCount" value="0" valueType="UInt32" />
+            <Parameter name="ReplaceSymbols" value="" valueType="String" />
+            <Parameter name="PauseReceive" value="5000" valueType="UInt32" />
+            <Parameter name="OverflowDuration" value="1000" valueType="UInt32" />
+            <Parameter name="BufferSize" value="100000" valueType="UInt32" />
+            <Parameter name="OverflowCheck" value="true" valueType="Boolean" />
+          </Parameters>
+          <Unions>
+            <Union name="Data" description="" comment="" type="Currently" controlArchivePeriod="00:01:00" missedArchiveControlStart="1.00:00:00" missedArchiveControlDepth="2.00:00:00">
+              <Properties scanRate="Disabled" scanPhase="00:00:00" reSendPeriod="Disabled" timestampAssignType="Device" deadband="0" deadtime="0" enableAlarm="False" cacheType="Adding" accessType="Read" />
+              <Tags>
+                <Tag name="MsgInCodePageDefault" description="" comment="" alias="" units="" driverAddress="MsgInCodePageDefault">
+                  <Properties valueType="String" timestampAssignType="Device" deadband="0" deadtime="0" factor="1" offset="0" loIR="-1.7976931348623157E+308" hiIR="1.7976931348623157E+308" enableAlarm="False" cacheType="Adding" accessType="Read" readAfterWrite="false" />
+                </Tag>
+                <Tag name="MsgInCodePageUTF8" description="" comment="" alias="" units="" driverAddress="MsgInCodePageUTF8">
+                  <Properties valueType="String" timestampAssignType="Device" deadband="0" deadtime="0" factor="1" offset="0" loIR="-1.7976931348623157E+308" hiIR="1.7976931348623157E+308" enableAlarm="False" cacheType="Adding" accessType="Read" readAfterWrite="false" />
+                </Tag>
+                <Tag name="MsgInCodePageUTF7" description="" comment="" alias="" units="" driverAddress="MsgInCodePageUTF7">
+                  <Properties valueType="String" timestampAssignType="Device" deadband="0" deadtime="0" factor="1" offset="0" loIR="-1.7976931348623157E+308" hiIR="1.7976931348623157E+308" enableAlarm="False" cacheType="Adding" accessType="Read" readAfterWrite="false" />
+                </Tag>
+                <Tag name="MsgInCodePageUTF32" description="" comment="" alias="" units="" driverAddress="MsgInCodePageUTF32">
+                  <Properties valueType="String" timestampAssignType="Device" deadband="0" deadtime="0" factor="1" offset="0" loIR="-1.7976931348623157E+308" hiIR="1.7976931348623157E+308" enableAlarm="False" cacheType="Adding" accessType="Read" readAfterWrite="false" />
+                </Tag>
+                <Tag name="MsgInCodePageUnicode" description="" comment="" alias="" units="" driverAddress="MsgInCodePageUnicode">
+                  <Properties valueType="String" timestampAssignType="Device" deadband="0" deadtime="0" factor="1" offset="0" loIR="-1.7976931348623157E+308" hiIR="1.7976931348623157E+308" enableAlarm="False" cacheType="Adding" accessType="Read" readAfterWrite="false" />
+                </Tag>
+                <Tag name="MsgInCodePage866" description="" comment="" alias="" units="" driverAddress="MsgInCodePage866">
+                  <Properties valueType="String" timestampAssignType="Device" deadband="0" deadtime="0" factor="1" offset="0" loIR="-1.7976931348623157E+308" hiIR="1.7976931348623157E+308" enableAlarm="False" cacheType="Adding" accessType="Read" readAfterWrite="false" />
+                </Tag>
+                <Tag name="MsgInCodePage1251" description="" comment="" alias="" units="" driverAddress="MsgInCodePage1251">
+                  <Properties valueType="String" timestampAssignType="Device" deadband="0" deadtime="0" factor="1" offset="0" loIR="-1.7976931348623157E+308" hiIR="1.7976931348623157E+308" enableAlarm="False" cacheType="Adding" accessType="Read" readAfterWrite="false" />
+                </Tag>
+              </Tags>
+              <Attributes>
+                <Attribute name="FileTemplate" value="C:\Program Files (x86)\Indusoft\Indusoft.Alcor.DataServer\Drivers\Parsers\Indusoft.Alcor.Drivers.DataParser.Flow.template"  valueType="String" />
+              </Attributes>
+            </Union>
+          </Unions>
+        </Device>
+      </Devices>
+    </Group>
+  </Groups>
+
+  <SimpleChannels>
+    <SimpleChannel name="MOXA_ANY" description="MOXA_ANY" address="127.0.0.1:4001" channelType="TCPServer" ownershipType="Exclusive"></SimpleChannel>
+  </SimpleChannels>
+</ServerConfig>
